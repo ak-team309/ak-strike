@@ -1,1 +1,35 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0; padding: 0; background: black;
+            height: 100vh; width: 100vw;
+            display: flex; justify-content: center; align-items: center;
+            flex-direction: column; overflow: hidden;
+            font-family: 'Arial Black', sans-serif;
+        }
+        .logo {
+            color: #ff0000; font-size: 150px;
+            text-shadow: 0 0 30px #f00;
+            animation: glitch 0.1s infinite;
+        }
+        .status {
+            color: white; font-size: 30px;
+            letter-spacing: 10px; text-transform: uppercase;
+            margin-top: -20px;
+        }
+        @keyframes glitch {
+            0% { transform: skew(2deg); opacity: 1; }
+            50% { transform: skew(-2deg); opacity: 0.8; }
+            100% { transform: skew(0deg); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">AK TEAM</div>
+    <div class="status">SYSTEM OVERRIDDEN</div>
+    <audio src="aa.mp3" autoplay loop></audio>
+</body>
+</html>
